@@ -1,7 +1,7 @@
 import gzip
 import json
 import requests
-from thought import Thought
+from lib import thought
 from random import choice
 
 class Reddit():
@@ -26,7 +26,7 @@ class Reddit():
 
 		data = data['data']['children']
 		for x in data:
-			self.thoughts.append(Thought(x['data']))
+			self.thoughts.append(thought.Thought(x['data']))
 
 	def randomThought(self):
 		thought = choice(self.thoughts)

@@ -1,17 +1,18 @@
 #!/usr/local/bin/python3
 
-from reddit import Reddit
-from thought import Thought
+from lib import config
+from lib import thought
+from lib import reddit
 import argparse
 import sys
-from config import Config
+
 
 class ShowerThoughts():
 
 
 	def __init__(self):
 
-		self.connection = Reddit()
+		self.connection = reddit.Reddit()
 
 		parser = argparse.ArgumentParser(
 
@@ -53,5 +54,5 @@ class ShowerThoughts():
 		self.connection.read()
 
 if __name__ == '__main__':
-	config = Config()
+	config = config.Config()
 	ShowerThoughts()

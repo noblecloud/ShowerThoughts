@@ -11,3 +11,17 @@ class Config():
 		if not os.path.exists(home+'/.config/shower_thoughts'):
 			print("First run: creating config folder in ~/.config/shower_thoughts")
 			os.mkdir(home+'/.config/shower_thoughts')
+
+
+
+example = {
+  "config": {
+	"section": "top",
+	"timeframe": "all",
+	"limit": "100"
+  },
+  "database": {
+	"updated": 0,
+	"lastDisplayed": "none"
+  }
+}
