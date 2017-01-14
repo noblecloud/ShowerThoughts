@@ -29,4 +29,5 @@ class Reddit:
 			self.thoughts.append(Thought(x['data']))
 
 	def randomThought(self):
-		return choice(self.thoughts)
+		thought = choice(self.thoughts)
+		return thought
