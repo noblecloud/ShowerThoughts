@@ -2,6 +2,7 @@ import gzip
 import json
 import requests
 from thought import Thought
+from random import choice
 
 class Reddit:
 
@@ -21,11 +22,11 @@ class Reddit:
 		with open('database.json', 'r') as database:
 			data = json.loads(database.read())
 
-		thoughts = []
+		self.thoughts = []
 
-		data2 = data['data']['children']
-		for x in data2:
-			thoughts.append(Thought(x['data']))
+		data = data['data']['children']
+		for x in data:
+			self.thoughts.append(Thought(x['data']))
 
-		for x in thoughts:
-			print(x,"\n")
+	def randomThought(self):
+		return choice(self.thoughts)
