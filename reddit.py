@@ -4,7 +4,7 @@ import requests
 from thought import Thought
 from random import choice
 
-class Reddit:
+class Reddit():
 
 
 	def pull(self, timeframe="all", limit="100"):

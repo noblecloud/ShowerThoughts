@@ -1,4 +1,4 @@
-class Thought:
+class Thought():
 
 	def __init__(self, data):
 		self.text = data['title']
