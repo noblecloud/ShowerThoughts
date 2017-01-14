@@ -4,6 +4,7 @@ from reddit import Reddit
 from thought import Thought
 import argparse
 import sys
+from config import Config
 
 class ShowerThoughts():
 
@@ -52,4 +53,5 @@ class ShowerThoughts():
 		self.connection.read()
 
 if __name__ == '__main__':
+	config = Config()
 	ShowerThoughts()
