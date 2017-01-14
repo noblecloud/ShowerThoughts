@@ -12,7 +12,9 @@ class ShowerThoughts():
 
 	def __init__(self):
 
-		self.connection = reddit.Reddit()
+		self.config = config.Config()
+
+		self.connection = reddit.Reddit(self.config)
 
 		parser = argparse.ArgumentParser(
 
@@ -51,8 +53,11 @@ class ShowerThoughts():
 			exit(1)
 
 	def read(self):
-		self.connection.read()
+		try:
+			self.connection.read()
+		except Exception:
+			self.connection.pull()
+			self.read()
 
 if __name__ == '__main__':
-	config = config.Config()
 	ShowerThoughts()

@@ -1,5 +1,7 @@
 import sys
 import os
+import json
+import pickle
 
 class Config():
 
@@ -7,13 +9,22 @@ class Config():
 
 		# create config folder
 		from os.path import expanduser
-		home = os.path.expanduser("~")
-		if not os.path.exists(home+'/.config/shower_thoughts'):
-			print("First run: creating config folder in ~/.config/shower_thoughts")
-			os.mkdir(home+'/.config/shower_thoughts')
+		self.configDir = os.path.expanduser("~") + '/.config/shower_thoughts'
+		if not os.path.exists(self.configDir):
+			print("First run: creating config folder in {}".format(self.configDir))
+			os.mkdir(self.configDir)
 
-		if not os.path.exists(home+'/.config/shower_thoughts/config.json'):
+		# copy example config file
+		if not os.path.exists(self.configDir + '/config.json'):
 			print("No config file: copying from example file")
-			# copy example config file
 			from shutil import copyfile
-			copyfile('config.json.example', home+'/.config/shower_thoughts/config.json')
+			copyfile('config.json.example', self.configDir + '/config.json')
+
+		self.load()
+
+	def load(self):
+		with open(self.configDir + '/config.json', 'r') as configFile:
+			self.config = json.loads(configFile.read())
+
+		self.timeframe = self.config['config']['timeframe']
+		self.limit = self.config['config']['limit']

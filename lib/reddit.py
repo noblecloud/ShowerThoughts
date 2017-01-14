@@ -3,30 +3,40 @@ import json
 import requests
 from lib import thought
 from random import choice
+import pickle
+import os
 
 class Reddit():
 
+	def __init__(self, configObj):
+		self.config = configObj
+		self.configDir = os.path.expanduser("~") + '/.config/shower_thoughts'
 
-	def pull(self, timeframe="all", limit="100"):
 
-		url = "https://www.reddit.com/r/showerthoughts/top.json?t={}&limit={}".format(timeframe, limit)
+	def pull(self):
+
+		url = "https://www.reddit.com/r/showerthoughts/top.json?t={}&limit={}".format(self.config.timeframe, self.config.limit)
 
 		output = requests.get(url).json()
 
-		with open('database.json', 'w') as database:
-			json.dump(output, database)
+		if os.path.exists(self.configDir):
+			with open(self.configDir + '/database.json', 'w') as database:
+				json.dump(output, database)
 
 
 	def read(self):
+		if os.path.exists(self.configDir + '/database.json'):
+			with open(self.configDir + '/database.json', 'r') as database:
+				data = json.loads(database.read())
 
-		with open('database.json', 'r') as database:
-			data = json.loads(database.read())
+			self.thoughts = []
 
-		self.thoughts = []
+			data = data['data']['children']
+			for x in data:
+				self.thoughts.append(thought.Thought(x['data']))
+		else:
+			raise Exception("No database to pull from, run 'shower_thoughts update' first to pull from reddit.")
 
-		data = data['data']['children']
-		for x in data:
-			self.thoughts.append(thought.Thought(x['data']))
 
 	def randomThought(self):
 		thought = choice(self.thoughts)
