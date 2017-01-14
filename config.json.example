@@ -1,0 +1,11 @@
+{
+  "config": {
+	"section": "top",
+	"timeframe": "all",
+	"limit": "100"
+  },
+  "database": {
+	"updated": 0,
+	"lastDisplayed": "none"
+  }
+}
