@@ -19,9 +19,13 @@ class Reddit():
 
 		output = requests.get(url).json()
 
-		if os.path.exists(self.configDir):
-			with open(self.configDir + '/database.json', 'w') as database:
-				json.dump(output, database)
+		if 'error' in output.keys():
+			print(output['message'])
+
+		else:
+			if os.path.exists(self.configDir):
+				with open(self.configDir + '/database.json', 'w') as database:
+					json.dump(output, database)
 
 
 	def read(self):
@@ -40,4 +44,9 @@ class Reddit():
 
 	def randomThought(self):
 		thought = choice(self.thoughts)
+
+		if os.path.exists(self.configDir):
+			with open(self.configDir + '/lastDisplayed.json', 'w') as last:
+				json.dump(thought.jsonExport(), last)
+
 		return thought

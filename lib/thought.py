@@ -4,7 +4,7 @@ class Thought():
 		self.text = data['title']
 		self.subtext = data['selftext']
 		self.author = data['author']
-		self.permalink = "https://reddit.com/r" + data['permalink']
+		self.permalink = "https://reddit.com" + data['permalink']
 		self.score = data['score']
 		self.created = data['created']
 		self.nsfw = data['over_18']
@@ -17,3 +17,11 @@ class Thought():
 
 	def __repr__(self):
 		return "Thought: " + self.id
+
+	def jsonExport(self):
+		return {
+			'title':     self.text,
+			'author':    self.author,
+			'permalink': self.permalink,
+			'id':        self.id
+		}

@@ -43,8 +43,7 @@ class ShowerThoughts():
 		# valid response
 		elif args.command in ['update','upvote','downvote','config','open']:
 			print("doing...")
-			print(args.command)
-			exit(1)
+			getattr(self, args.command)()
 
 		# invalid response
 		else:
@@ -58,6 +57,32 @@ class ShowerThoughts():
 		except Exception:
 			self.connection.pull()
 			self.read()
+
+	def update(self):
+		parser = argparse.ArgumentParser(
+			description='Record changes to the repository')
+		# prefixing the argument with -- means it's optional
+		parser.add_argument('--amend', action='store_true')
+		# now that we're inside a subcommand, ignore the first
+		# TWO argvs, ie the command (git) and the subcommand (commit)
+		args = parser.parse_args(sys.argv[2:])
+		print('Running git commit, amend={}'.format(args.amend))
+		self.connection.pull()
+
+	def open(self):
+		import os
+		if os.path.exists(self.config.configDir + '/lastDisplayed.json'):
+			with open(self.config.configDir + '/lastDisplayed.json', 'r') as last:
+				import json
+				x = json.loads(last.read())
+				import webbrowser
+				webbrowser.open(x['permalink'], new=0, autoraise=True)
+
+
+		# with open(self.configDir + '/config.json', 'r') as configFile:
+		# 	self.config = json.loads(configFile.read())
+
+
 
 if __name__ == '__main__':
 	ShowerThoughts()
