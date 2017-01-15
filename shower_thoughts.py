@@ -22,13 +22,11 @@ class ShowerThoughts():
 					usage='''shower_thought <command> [<args>]
 
 		   update       Update local database of shower thoughts
-		   upvote       Upvote last displayed quote (must be logged in)
-		   downvote     Downvote last disolayed quote (must be logged in)
 		   open         Open comments section of last quote
 		   config       Get or set config''')
 
 		parser.add_argument('command',
-			help='Subcommand to run [update|upvote|downvote|config|open]',
+			help='Subcommand to run [update|config|open]',
 			nargs='?', default="")
 
 		parser.parse_args()
@@ -41,7 +39,7 @@ class ShowerThoughts():
 			exit(1)
 
 		# valid response
-		elif args.command in ['update','upvote','downvote','config','open']:
+		elif args.command in ['update','config','open']:
 			print("doing...")
 			getattr(self, args.command)()
 
