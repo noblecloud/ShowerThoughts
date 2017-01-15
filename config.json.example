@@ -2,7 +2,7 @@
   "config": {
 	"section": "top",
 	"timeframe": "all",
-	"limit": "100"
+	"limit": "100",
 	"subreddit": "showerthoughts"
   },
   "database": {
