@@ -3,6 +3,7 @@
 	"section": "top",
 	"timeframe": "all",
 	"limit": "100"
+	"subreddit": "showerthoughts"
   },
   "database": {
 	"updated": 0,
