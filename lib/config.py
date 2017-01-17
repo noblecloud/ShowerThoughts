@@ -28,13 +28,29 @@ class Config():
         with open(self.configDir + '/config.json', 'r') as configFile:
             self.config = json.loads(configFile.read())
 
-        self.timeframe = self.config['config']['timeframe']
-        self.limit = self.config['config']['limit']
-        self.subreddit = self.config['config']['subreddit']
-        self.section = self.config['config']['section']
+        # Reddit config
+        self.timeframe = self.config['reddit']['timeframe']
+        self.limit = self.config['reddit']['limit']
+        self.subreddit = self.config['reddit']['subreddit']
+        self.section = self.config['reddit']['section']
+
+        # Display Config
+        self.author = self.config['display']['author']
+        self.score = self.config['display']['score']
 
 
     def save(self):
+
+        # Reddit Config
+        self.config['reddit']['timeframe'] = self.timeframe
+        self.config['reddit']['limit'] = self.limit
+        self.config['reddit']['subreddit'] = self.subreddit
+        self.config['reddit']['section'] = self.section
+
+        # Dislay Config
+        self.config['display']['author'] = self.author
+        self.config['display']['score'] = self.score
+
         with open(self.configDir + '/config.json', 'w') as configFile:
             json.dump(self.config, configFile)
 

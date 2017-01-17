@@ -1,12 +1,15 @@
 {
-  "config": {
+  "reddit": {
 	"section": "top",
-	"timeframe": "all",
+	"timeframe": "week",
 	"limit": "100",
 	"subreddit": "showerthoughts"
   },
+  "display": {
+  	"author": true,
+  	"score": false
+  },
   "database": {
-	"updated": 0,
-	"lastDisplayed": "none"
+	"updated": 0
   }
 }
