@@ -3,7 +3,6 @@
 from lib import config
 from lib import thought
 from lib import reddit
-import argparse
 import sys
 
 
@@ -16,44 +15,15 @@ class ShowerThoughts():
 
         self.connection = reddit.Reddit(self.config)
 
-        parser = argparse.ArgumentParser(
-
-        description='Displays a random shower thought from reddit',
+        # description='Displays a random shower thought from reddit',
                     usage='''shower_thought <command> [<args>]
 
            update       Update local database of shower thoughts
            open         Open comments section of last quote
-           config       Get or set config''')
+           conf         Get or set setting in config file''')
 
-        parser.add_argument('command',
-            help='Subcommand to run [update|config|open]',
-            nargs='?', default="")
-
-        parser.parse_args()
-        args = parser.parse_args(sys.argv[1:2])
-
-        # default response
-        if args.command == "":
-            self.read()
-            print(self.connection.randomThought())
-            exit(1)
-
-        # valid response
-        elif args.command in ['update','config','open']:
-            if args.command == 'update':
-                self.update()
-            elif args.command == 'open':
-                self.open()
-            elif args.command == 'config':
-                self.configSet()
-
-
-
-        # invalid response
-        else:
-            print('Unrecognized command')
-            parser.print_help()
-            exit(1)
+        # parser.add_argument('command',
+            help='Subcommand to run [update|conf|open]', nargs='*')
 
     def read(self):
         try:
@@ -66,18 +36,10 @@ class ShowerThoughts():
         self.connection.pull()
 
 
-    def configSet(self):
-        parser2 = argparse.ArgumentParser(
-            description='Set config options'
-        )
-        parser2.add_argument('--timeframe')
-        parser2.add_argument('--limit', type=int)
-        parser2.add_argument('--subreddit')
-        parser2.add_argument('--section')
-        parser2.parse_args()
-        args = parser2.parse_args(sys.argv[3:])
-        print(args)
-        print('Timeframe set to {}'.format(args.limit))
+    def conf(self):
+        import pprint
+        pp = pprint.PrettyPrinter()
+        pp.pprint(self.config.get())
 
 
     def open(self):
