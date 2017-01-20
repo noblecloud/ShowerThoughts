@@ -67,3 +67,7 @@ class Config():
             self.section = value
 
         self.save()
+
+    def get(self, flag=None):
+	    if flag == None:
+		    return self.config
