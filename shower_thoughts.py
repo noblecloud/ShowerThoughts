@@ -10,6 +10,9 @@ Usage:
 
 Options:
   -h --help     Show this screen.
+  update        pull latest data from reddit
+  open          open comments page of last displayed item
+  config        set or display a setting
 """
 
 from docopt import docopt
@@ -62,7 +65,7 @@ class ShowerThoughts():
                         print("Timeframe set to {}".format(self.config.get('timeframe')))
                     else:
                         print("Timeframe must be hour, day, week, month, year, or all.")
-            
+
             if args['subreddit']:
                 if not value:
                     print(self.config.get('subreddit'))
