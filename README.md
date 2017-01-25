@@ -1,4 +1,4 @@
-# ShowerThoughts (WIP)
+# ShowerThoughts
 Display a random shower thought from /r/showerthoughts.  Best when paired with cowsay.
 
 Not limited to just /r/showerthoughts.  Use `config subreddit newsub` to change to a new subreddit.
