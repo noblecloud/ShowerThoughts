@@ -37,8 +37,9 @@ class ShowerThoughts():
             if args['limit']:
                 if value:
                     value = int(value)
-                    if value <= 1 and value >= 100:
+                    if 0 < value < 101:
                         self.config.set('limit', value)
+                        print("Value set to {}".format(self.config.get('limit')))
                     else:
                         print("Value for limit must be between 1 and 100")
                 else:
@@ -48,7 +49,7 @@ class ShowerThoughts():
                 if not value:
                     print(self.config.get('section'))
                 else:
-                    sections = ['hot', 'new', 'random', 'rising', 'top ', 'controversial']
+                    sections = ['hot', 'new', 'random', 'rising', 'top', 'controversial']
                     if value in sections:
                         self.config.set('section', value)
                         print("Section set to {}".format(self.config.get('section')))
@@ -72,11 +73,14 @@ class ShowerThoughts():
                 else:
                     self.config.set('subreddit', value)
                     print("Subreddi set to /r/{}".format(self.config.get('subreddit')))
+        else:
+            self.read()
 
 
     def read(self):
         try:
             self.connection.read()
+            print(self.connection.randomThought())
         except Exception:
             print("Unable to read database.  Try running \"shower_thoughts update\"")
 
@@ -107,6 +111,5 @@ class ShowerThoughts():
 if __name__ == '__main__':
 
     arguments = docopt(__doc__, version='Shower Thoughts')
-    print(arguments)
     ShowerThoughts(arguments)
 
