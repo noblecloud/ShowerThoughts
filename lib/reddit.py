@@ -18,7 +18,7 @@ class Reddit():
         url = "https://www.reddit.com/r/{}/{}.json?t={}&limit={}"\
             .format(
                 self.config.subreddit,
-                self.config.section,
+                self.config.sort,
                 self.config.timeframe,
                 self.config.limit
             )

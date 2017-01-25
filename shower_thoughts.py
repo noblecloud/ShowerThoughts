@@ -6,7 +6,7 @@ Usage:
   shower_thoughts
   shower_thoughts update
   shower_thoughts open
-  shower_thoughts config (section|limit|timeframe|subreddit) [<value>]
+  shower_thoughts config (sort|limit|timeframe|subreddit) [<value>]
 
 Options:
   -h --help     Show this screen.
@@ -45,16 +45,16 @@ class ShowerThoughts():
                 else:
                     print(self.config.get('limit'))
 
-            if args['section']:
+            if args['sort']:
                 if not value:
-                    print(self.config.get('section'))
+                    print(self.config.get('sort'))
                 else:
-                    sections = ['hot', 'new', 'random', 'rising', 'top', 'controversial']
-                    if value in sections:
-                        self.config.set('section', value)
-                        print("Section set to {}".format(self.config.get('section')))
+                    sorts = ['hot', 'new', 'random', 'rising', 'top', 'controversial']
+                    if value in sorts:
+                        self.config.set('sort', value)
+                        print("Sort set to {}".format(self.config.get('sort')))
                     else:
-                        print("Section must be hot, new, random, rising, top, controversial")
+                        print("Sort must be hot, new, random, rising, top, controversial")
 
             if args['timeframe']:
                 if not value:

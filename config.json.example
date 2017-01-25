@@ -1,6 +1,6 @@
 {
   "reddit": {
-	"section": "top",
+	"sort": "top",
 	"timeframe": "week",
 	"limit": "100",
 	"subreddit": "showerthoughts"

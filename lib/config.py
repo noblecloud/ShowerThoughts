@@ -32,7 +32,7 @@ class Config():
         self.timeframe = self.config['reddit']['timeframe']
         self.limit = self.config['reddit']['limit']
         self.subreddit = self.config['reddit']['subreddit']
-        self.section = self.config['reddit']['section']
+        self.sort = self.config['reddit']['sort']
 
         # Display Config
         self.author = self.config['display']['author']
@@ -45,7 +45,7 @@ class Config():
         self.config['reddit']['timeframe'] = self.timeframe
         self.config['reddit']['limit'] = self.limit
         self.config['reddit']['subreddit'] = self.subreddit
-        self.config['reddit']['section'] = self.section
+        self.config['reddit']['sort'] = self.sort
 
         # Dislay Config
         self.config['display']['author'] = self.author
@@ -63,8 +63,8 @@ class Config():
             self.timeframe = value
         elif flag == "limit":
             self.limit = value
-        elif flag == 'section':
-            self.section = value
+        elif flag == 'sort':
+            self.sort = value
 
         self.save()
 
@@ -75,7 +75,7 @@ class Config():
             return self.limit
         elif flag == 'timeframe':
             return self.timeframe
-        elif flag == 'section':
-            return self.section
+        elif flag == 'sort':
+            return self.sort
         elif flag == 'subreddit':
             return self.subreddit
