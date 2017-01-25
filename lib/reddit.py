@@ -6,12 +6,12 @@ from random import choice
 import pickle
 import os
 
+
 class Reddit():
 
     def __init__(self, configObj):
         self.config = configObj
         self.configDir = os.path.expanduser("~") + '/.config/shower_thoughts'
-
 
     def pull(self):
 
@@ -33,7 +33,6 @@ class Reddit():
                 with open(self.configDir + '/database.json', 'w') as database:
                     json.dump(output, database)
 
-
     def read(self):
         if os.path.exists(self.configDir + '/database.json'):
             with open(self.configDir + '/database.json', 'r') as database:
@@ -46,7 +45,6 @@ class Reddit():
                 self.thoughts.append(thought.Thought(x['data']))
         else:
             raise Exception("No database to pull from, run 'shower_thoughts update' first to pull from reddit.")
-
 
     def randomThought(self):
         thought = choice(self.thoughts)

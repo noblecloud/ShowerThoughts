@@ -18,8 +18,8 @@ Options:
 from docopt import docopt
 import lib
 
-class ShowerThoughts():
 
+class ShowerThoughts:
 
     def __init__(self, args):
 
@@ -41,7 +41,9 @@ class ShowerThoughts():
                     value = int(value)
                     if 0 < value < 101:
                         self.config.set('limit', value)
-                        print("Value set to {}".format(self.config.get('limit')))
+                        print(
+                            "Value set to {}".format(
+                                self.config.get('limit')))
                     else:
                         print("Value for limit must be between 1 and 100")
                 else:
@@ -51,23 +53,34 @@ class ShowerThoughts():
                 if not value:
                     print(self.config.get('sort'))
                 else:
-                    sorts = ['hot', 'new', 'random', 'rising', 'top', 'controversial']
+                    sorts = [
+                        'hot',
+                        'new',
+                        'random',
+                        'rising',
+                        'top',
+                        'controversial']
                     if value in sorts:
                         self.config.set('sort', value)
                         print("Sort set to {}".format(self.config.get('sort')))
                     else:
-                        print("Sort must be hot, new, random, rising, top, controversial")
+                        print(
+                            "Sort must be hot, new, random, rising, top, controversial")
 
             if args['timeframe']:
                 if not value:
                     print(self.config.get('timeframe'))
                 else:
-                    timeframes = ['hour', 'day', 'week', 'month', 'year', 'all']
+                    timeframes = [
+                        'hour', 'day', 'week', 'month', 'year', 'all']
                     if value in timeframes:
                         self.config.set('timeframe', value)
-                        print("Timeframe set to {}".format(self.config.get('timeframe')))
+                        print(
+                            "Timeframe set to {}".format(
+                                self.config.get('timeframe')))
                     else:
-                        print("Timeframe must be hour, day, week, month, year, or all.")
+                        print(
+                            "Timeframe must be hour, day, week, month, year, or all.")
 
             if args['subreddit']:
                 if not value:
@@ -77,7 +90,6 @@ class ShowerThoughts():
                     print("Subreddit set to /r/{}".format(self.config.get('subreddit')))
         else:
             self.read()
-
 
     def read(self):
         try:
@@ -95,7 +107,6 @@ class ShowerThoughts():
         pp = pprint.PrettyPrinter()
         pp.pprint(self.config.get())
 
-
     def open(self):
         import os
         if os.path.exists(self.config.configDir + '/lastDisplayed.json'):
@@ -105,7 +116,6 @@ class ShowerThoughts():
                 import webbrowser
                 webbrowser.open(x['permalink'], new=0, autoraise=True)
 
-
         with open(self.configDir + '/config.json', 'r') as configFile:
             self.config = json.loads(configFile.read())
 
@@ -114,4 +124,3 @@ if __name__ == '__main__':
 
     arguments = docopt(__doc__, version='Shower Thoughts')
     ShowerThoughts(arguments)
-

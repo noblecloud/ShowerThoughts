@@ -3,8 +3,8 @@ import os
 import json
 import pickle
 
-class Config():
 
+class Config():
 
     def __init__(self):
 
@@ -23,7 +23,6 @@ class Config():
 
         self.load()
 
-
     def load(self):
         with open(self.configDir + '/config.json', 'r') as configFile:
             self.config = json.loads(configFile.read())
@@ -37,7 +36,6 @@ class Config():
         # Display Config
         self.author = self.config['display']['author']
         self.score = self.config['display']['score']
-
 
     def save(self):
 
@@ -54,7 +52,6 @@ class Config():
         with open(self.configDir + '/config.json', 'w') as configFile:
             json.dump(self.config, configFile)
 
-
     def set(self, flag, value):
 
         if flag == "subreddit":
@@ -69,7 +66,7 @@ class Config():
         self.save()
 
     def get(self, flag=None):
-        if flag == None:
+        if flag is None:
             return self.config
         elif flag == 'limit':
             return self.limit
