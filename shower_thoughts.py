@@ -20,7 +20,6 @@ import lib
 
 
 class ShowerThoughts:
-
     def __init__(self, args):
 
         self.config = lib.Config()
@@ -109,6 +108,7 @@ class ShowerThoughts:
 
     def open(self):
         import os
+        import json
         if os.path.exists(self.config.configDir + '/lastDisplayed.json'):
             with open(self.config.configDir + '/lastDisplayed.json', 'r') as last:
                 import json
@@ -116,11 +116,10 @@ class ShowerThoughts:
                 import webbrowser
                 webbrowser.open(x['permalink'], new=0, autoraise=True)
 
-        with open(self.configDir + '/config.json', 'r') as configFile:
+        with open(self.config.configDir + '/config.json', 'r') as configFile:
             self.config = json.loads(configFile.read())
 
 
 if __name__ == '__main__':
-
     arguments = docopt(__doc__, version='Shower Thoughts')
     ShowerThoughts(arguments)
