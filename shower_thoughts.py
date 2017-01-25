@@ -74,7 +74,7 @@ class ShowerThoughts():
                     print(self.config.get('subreddit'))
                 else:
                     self.config.set('subreddit', value)
-                    print("Subreddi set to /r/{}".format(self.config.get('subreddit')))
+                    print("Subreddit set to /r/{}".format(self.config.get('subreddit')))
         else:
             self.read()
 
