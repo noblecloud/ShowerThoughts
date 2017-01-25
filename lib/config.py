@@ -69,5 +69,13 @@ class Config():
         self.save()
 
     def get(self, flag=None):
-	    if flag == None:
-		    return self.config
+        if flag == None:
+            return self.config
+        elif flag == 'limit':
+            return self.limit
+        elif flag == 'timeframe':
+            return self.timeframe
+        elif flag == 'section':
+            return self.section
+        elif flag == 'subreddit':
+            return self.subreddit
