@@ -24,14 +24,16 @@ class ShowerThoughts():
     def __init__(self, args):
 
         self.config = lib.Config()
-
         self.connection = lib.Reddit(self.config)
 
         value = args['<value>']
+
         if args['update']:
             self.update()
+
         elif args['open']:
             self.open()
+
         elif args['config']:
 
             if args['limit']:
